@@ -9,6 +9,13 @@ public class TaskImpl implements Task {
   private String description;
   private LocalDateTime creationDate;
 
+  // == constructor ==
+  public TaskImpl(String title, String description) {
+    this.title = title;
+    this.description = description;
+    creationDate = LocalDateTime.now();
+  }
+
   // == public methods
   @Override
   public void setTitle(String title) {
