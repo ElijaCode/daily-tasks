@@ -1,6 +1,8 @@
 package com.github.elijacode;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class TaskImpl implements Task {
 
@@ -38,7 +40,18 @@ public class TaskImpl implements Task {
   }
 
   @Override
-  public LocalDateTime getCreationDate() {
-    return creationDate;
+  public String getCreationDate() {
+    return creationDate
+        .format(DateTimeFormatter
+            .ofLocalizedDateTime(FormatStyle.SHORT));
+  }
+
+  @Override
+  public String toString() {
+    return "TaskImpl{" +
+        "title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        ", creationDate=" + getCreationDate() +
+        '}';
   }
 }
