@@ -9,6 +9,7 @@ public class TaskImpl implements Task {
   // == fields ==
   private String title;
   private String description;
+  private boolean isComplete;
   private LocalDateTime creationDate;
 
   // == constructor ==
@@ -47,11 +48,20 @@ public class TaskImpl implements Task {
   }
 
   @Override
+  public boolean isComplete() {
+    return isComplete;
+  }
+
+  @Override
+  public void setComplete(boolean isComplete) {
+    this.isComplete = isComplete;
+  }
+
+  @Override
   public String toString() {
-    return "TaskImpl{" +
-        "title='" + title + '\'' +
-        ", description='" + description + '\'' +
-        ", creationDate=" + getCreationDate() +
-        '}';
+    return "Title: " + title +
+        "\tDescription: " + description +
+        "\tCompleted: " + (isComplete ? "Yup!" : "No :(") +
+        "\tCreated: " + getCreationDate();
   }
 }
