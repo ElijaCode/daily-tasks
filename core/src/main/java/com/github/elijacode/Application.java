@@ -10,5 +10,10 @@ public class Application {
 
   public static void main(String[] args) {
     log.info("daily-tasks");
+    Menu menuOption = new MenuImpl();
+
+    while(menuOption.mainMenu() != Menu.MAIN_EXIT) {
+      // run application
+    }
   }
 }
