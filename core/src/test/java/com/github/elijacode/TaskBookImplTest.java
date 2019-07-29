@@ -36,11 +36,11 @@ public class TaskBookImplTest {
   }
 
   @Test
-  public void testContainsCheck() {
+  public void testContains() {
     Task task = new TaskImpl("Clean", "Tidy up 8PM");
-    assertFalse(taskBook.containsCheck(task));
+    assertFalse(taskBook.contains(task));
     taskBook.add(task);
-    assertTrue(taskBook.containsCheck(task));
+    assertTrue(taskBook.contains(task));
   }
 
   @Test
@@ -60,4 +60,5 @@ public class TaskBookImplTest {
     List<Task> tasks = Arrays.asList(task0, task1);
     assertEquals(tasks, taskBook.getTaskList());
   }
+
 }

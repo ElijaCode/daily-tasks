@@ -3,21 +3,19 @@ package com.github.elijacode;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TaskBookImpl implements TaskBook {
 
   // == fields ==
   private List<Task> taskList;
-  private TaskManager taskManager;
-  private MessageGenerator messageGenerator;
 
   // == constructor ==
   public TaskBookImpl() {
     taskList = new ArrayList<>();
-    taskManager = new TaskManagerImpl();
-    messageGenerator = new MessageGeneratorImpl();
   }
+
   // == public methods ==
-  @Override
+    @Override
   public boolean add(Task task){
     return taskList.add(task);
   }
@@ -28,31 +26,28 @@ public class TaskBookImpl implements TaskBook {
   }
 
   @Override
-  public boolean containsCheck(Task task) {
+  public boolean contains(Task task) {
     return taskList.contains(task);
   }
 
   @Override
   public Task findByTitle(String title) {
+    // calling method -- possible null
     return taskList.stream()
                   .filter( task -> task.getTitle().equalsIgnoreCase(title))
                   .findAny()
                   .orElse(null);
   }
 
+
   @Override
   public void update(Task task) {
-    taskManager.changeDetails(task);
+    TaskManager.changeDetails(task);
   }
 
   @Override
   public Task create() {
-    return taskManager.create();
-  }
-
-  @Override
-  public void getAllDetails() {
-    messageGenerator.displayAllTasks(taskList);
+    return TaskManager.create();
   }
 
   @Override
@@ -60,4 +55,19 @@ public class TaskBookImpl implements TaskBook {
     // new so original can't be modified
     return new ArrayList<>(taskList);
   }
+
+  @Override
+  public Task selectTask() {
+    Task selectedTask = null;
+
+    if(!taskList.isEmpty()) {
+      int userInput = Input.getInt();
+      // validate range
+      if(userInput >= 0 && userInput < taskList.size()){
+        selectedTask = taskList.get(userInput);
+      }
+    }
+    return selectedTask;
+  }
+
 }

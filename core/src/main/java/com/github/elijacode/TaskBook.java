@@ -6,10 +6,11 @@ public interface TaskBook {
 
   boolean add(Task task);
   boolean remove(Task task);
-  boolean containsCheck(Task task);
+  boolean contains(Task task);
   void update(Task task);
-  void getAllDetails();
   Task create();
+  Task selectTask();
   Task findByTitle(String title);
   List<Task> getTaskList();
+
 }
